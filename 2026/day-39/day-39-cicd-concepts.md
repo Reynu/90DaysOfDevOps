@@ -56,3 +56,40 @@ Real-world example: A dev merges to main on Friday afternoon. Within 10 minutes,
 | Runner   | The machine (VM or container) that executes the job — GitHub-hosted or self-hosted |
 | Artifact | Output produced by a job that can be passed to the next stage — e.g. compiled binary, Docker image, coverage report |
 
+## Task 4: Pipeline Diagram
+
+Developer pushes code to GitHub
+            │
+            ▼
+    ┌───────────────┐
+    │   TRIGGER     │  on: push to main / pull_request
+    └──────┬────────┘
+           │
+           ▼
+    ┌───────────────────────────────────────┐
+    │           STAGE 1: TEST               │
+    │  - Checkout code                      │
+    │  - Install dependencies               │
+    │  - Run unit tests (pytest / jest)     │
+    │  - Lint check                         │
+    │  ✅ Pass → continue  ❌ Fail → stop  │
+    └──────────────┬────────────────────────┘
+                   │
+                   ▼
+    ┌───────────────────────────────────────┐
+    │           STAGE 2: BUILD              │
+    │  - Build Docker image                 │
+    │  - Tag image with git SHA             │
+    │  - Push image to Docker Hub / ECR     │
+    │  📦 Artifact: Docker image            │
+    └──────────────┬────────────────────────┘
+                   │
+                   ▼
+    ┌───────────────────────────────────────┐
+    │        STAGE 3: DEPLOY                │
+    │  - Pull Docker image on staging       │
+    │  - Run docker-compose up              │
+    │  - Health check endpoint              │
+    │  🚀 App live on staging server       │
+    └───────────────────────────────────────┘
+
