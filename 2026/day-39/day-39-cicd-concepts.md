@@ -22,7 +22,6 @@ This happens when a developer's local environment differs from the server: diffe
 
 Realistically: 1–2 times a day, if they're disciplined. With CI/CD and automation: teams like Netflix and Amazon deploy hundreds of times per day. Manual deploys don't scale — CI/CD does.
 
-
 ## Task 2: CI vs CD vs CD
 
 ### Continuous Integration (CI)
