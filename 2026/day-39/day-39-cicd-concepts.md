@@ -45,11 +45,14 @@ Real-world example: A dev merges to main on Friday afternoon. Within 10 minutes,
 
 ## Task 3: Pipeline Anatomy
 
-Term	What it does
-Trigger	The event that starts the pipeline — e.g. a git push, a PR, or a scheduled cron job
-Stage	A logical phase of the pipeline — e.g. build, test, deploy. Stages run in order
-Job	A unit of work inside a stage — e.g. "run unit tests" or "build Docker image"
-Step	A single command or action inside a job — e.g. run: pytest tests/
-Runner	The machine (VM or container) that actually executes the job — GitHub-hosted or self-hosted
-Artifact	Output produced by a job that can be passed to the next stage — e.g. a compiled binary, Docker image, coverage report
+## Task 3: Pipeline Anatomy
+
+| Term     | What it does |
+|----------|--------------|
+| Trigger  | The event that starts the pipeline — e.g. a `git push`, a PR, or a scheduled cron job |
+| Stage    | A logical phase of the pipeline — e.g. `build`, `test`, `deploy`. Stages run in order |
+| Job      | A unit of work inside a stage — e.g. "run unit tests" or "build Docker image" |
+| Step     | A single command or action inside a job — e.g. `run: pytest tests/` |
+| Runner   | The machine (VM or container) that executes the job — GitHub-hosted or self-hosted |
+| Artifact | Output produced by a job that can be passed to the next stage — e.g. compiled binary, Docker image, coverage report |
 
