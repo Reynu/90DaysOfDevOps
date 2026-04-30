@@ -57,30 +57,40 @@ Real-world example: A dev merges to main on Friday afternoon. Within 10 minutes,
 
 ## Task 4: Pipeline Diagram
 
-```mermaid
-flowchart TD
-
-A[Developer pushes code to GitHub] --> B[TRIGGER<br>on: push to main / pull_request]
-
-B --> C[STAGE 1: TEST<br>
-- Checkout code<br>
-- Install dependencies<br>
-- Run unit tests<br>
-- Lint check<br>
-✅ Pass → continue ❌ Fail → stop]
-
-C --> D[STAGE 2: BUILD<br>
-- Build Docker image<br>
-- Tag image with git SHA<br>
-- Push to Docker Hub / ECR<br>
-📦 Artifact: Docker image]
-
-D --> E[STAGE 3: DEPLOY<br>
-- Pull image on staging<br>
-- docker-compose up<br>
-- Health check<br>
-🚀 App live]
-
+Developer pushes code to GitHub
+            │
+            ▼
+    ┌───────────────┐
+    │   TRIGGER     │  on: push to main / pull_request
+    └──────┬────────┘
+           │
+           ▼
+    ┌───────────────────────────────────────┐
+    │           STAGE 1: TEST               │
+    │  - Checkout code                      │
+    │  - Install dependencies               │
+    │  - Run unit tests (pytest / jest)     │
+    │  - Lint check                         │
+    │  ✅ Pass → continue  ❌ Fail → stop  │
+    └──────────────┬────────────────────────┘
+                   │
+                   ▼
+    ┌───────────────────────────────────────┐
+    │           STAGE 2: BUILD              │
+    │  - Build Docker image                 │
+    │  - Tag image with git SHA             │
+    │  - Push image to Docker Hub / ECR     │
+    │  📦 Artifact: Docker image            │
+    └──────────────┬────────────────────────┘
+                   │
+                   ▼
+    ┌───────────────────────────────────────┐
+    │        STAGE 3: DEPLOY                │
+    │  - Pull Docker image on staging       │
+    │  - Run docker-compose up              │
+    │  - Health check endpoint              │
+    │  🚀 App live on staging server       │
+    └───────────────────────────────────────┘
 
 ## Task 5: Real-World Pipeline — FastAPI on GitHub
 
