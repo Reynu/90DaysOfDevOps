@@ -57,7 +57,6 @@ Real-world example: A dev merges to main on Friday afternoon. Within 10 minutes,
 
 ## Task 4: Pipeline Diagram
 
-
 ```mermaid
 flowchart TD
 
