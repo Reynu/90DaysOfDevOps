@@ -12,3 +12,5 @@
 
 * One dev's environment has a different Python/Node version — works locally, crashes in prod
 
+* No rollback plan — if the deploy breaks things, the team scrambles manually to fix it
+
