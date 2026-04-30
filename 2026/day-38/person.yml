@@ -1,0 +1,16 @@
+name: Renu
+Role: DevOps Engineer
+experience_years: 4+
+learning: true # boolean value to indicate if Renu is still learning
+tools:
+  - Linux
+  - Git & GitHub
+  - Docker
+  - GitHub Actions
+  - Kubernetes
+  - Terraform
+
+hobbies: ['Traveling', 'working out', 'eating clean']
+
+
+
