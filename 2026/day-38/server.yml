@@ -1,0 +1,23 @@
+server:
+  name: my-server
+  ip: 192.168.1.10
+  port: 8080
+
+database:
+   host: db.local
+   name: mydb
+   credentials:
+      user: admin
+      password:  test@123
+
+startup_script: |                       # The '|' character indicates that the following lines should be treated as a multi-line string, preserving line breaks and indentation.
+    #!/bin/bash
+    echo "Starting server..."
+    systemctl start nginx
+    echo "Server started"   
+
+startup_script_folded: >               # The '>' character indicates that the following lines should be treated as a multi-line string, but with line breaks replaced by spaces. This is useful for long strings that should be displayed on a single line.
+  #!/bin/bash
+  echo "Starting server..."
+  systemctl start nginx
+  echo "Server started"       
