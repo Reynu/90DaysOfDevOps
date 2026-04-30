@@ -22,3 +22,26 @@ This happens when a developer's local environment differs from the server: diffe
 
 Realistically: 1–2 times a day, if they're disciplined. With CI/CD and automation: teams like Netflix and Amazon deploy hundreds of times per day. Manual deploys don't scale — CI/CD does.
 
+
+## Task 2: CI vs CD vs CD
+
+### Continuous Integration (CI)
+
+Developers merge code to a shared branch frequently (multiple times a day). Every merge automatically triggers tests and builds. It catches bugs early — before they pile up into a broken mess.
+
+Real-world example: A developer opens a Pull Request on GitHub. GitHub Actions immediately runs unit tests. If tests fail, the PR is blocked from merging.
+
+### Continuous Delivery (CD)
+
+Everything CI does, plus: the code is automatically prepared and ready to deploy to production at any time — but a human still clicks the deploy button. "Delivery" means the software is always in a deployable state.
+
+Real-world example: After tests pass, the pipeline builds a Docker image and pushes it to a staging environment. The team reviews it, then manually triggers the production deploy.
+
+### Continuous Deployment (CD)
+
+Goes one step further than Delivery — no human approval needed. Every change that passes all tests is automatically deployed straight to production. Used by teams with high test confidence and mature pipelines.
+
+Real-world example: A dev merges to main on Friday afternoon. Within 10 minutes, the change is live on production with zero manual steps. Teams like Etsy and Flickr use this model.
+
+## Task 3: Pipeline Anatomy
+
