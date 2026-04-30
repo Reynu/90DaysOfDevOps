@@ -85,17 +85,32 @@ D --> E[STAGE 3: DEPLOY<br>
 
 ## Task 5: Real-World Pipeline — FastAPI on GitHub
 
-**Repo:** https://github.com/fastapi/fastapi  
-**Workflow File:** `.github/workflows/test.yml`
+Repo: fastapi/fastapi File: .github/workflows/test.yml
 
----
+### What triggers it?
 
-### 🚀 What triggers it?
+Three triggers:
 
-The pipeline runs on three events:
+push to the master branch
+pull_request when opened or updated (synchronize)
+schedule — runs automatically every Monday at midnight (cron: 0 0 * * 1)
 
-- **Push** → when code is pushed to the `master` branch  
-- **Pull Request** → when a PR is opened or updated (`synchronize`)  
-- **Schedule** → runs every Monday at midnight  
-  ```yaml
-  cron: '0 0 * * 1'
+### How many jobs does it have?
+
+#### 3 jobs:
+
+1. test — runs the actual test suite
+2. coverage-combine — merges coverage reports from all matrix runs
+3. check — a final gate job used for branch protection rules (does nothing except confirm all others passed)
+
+### What does it do?
+
+The test job uses a matrix strategy — it runs tests in parallel across multiple OS and Python version combinations (Ubuntu, macOS, Windows × Python 3.9 through 3.14). It installs dependencies via uv, runs the test suite, and uploads coverage files as artifacts. The coverage-combine job then downloads all those coverage files, merges them, generates an HTML coverage report, and enforces 100% code coverage — if coverage drops below 100%, the pipeline fails.
+
+## 3 Key Learnings
+
+1. CI/CD is a practice, not a tool. GitHub Actions, Jenkins, GitLab CI are just tools that implement the practice. The principle is: automate everything that can be automated between writing code and shipping it.
+
+2. A failing pipeline is a good thing. It means CI/CD caught a bug before it hit production. The goal is to fail fast and fix fast — not to have green pipelines by skipping tests.
+
+3. Continuous Deployment requires trust in your tests. You can only auto-deploy to production if your test suite is comprehensive enough to catch regressions. FastAPI enforcing 100% coverage is a great example of building that trust.
