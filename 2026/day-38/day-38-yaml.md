@@ -1,3 +1,3 @@
-## Day 38 – YAML Basics
+# Day 38 – YAML Basics
 
-# Task 1 & 2: person.yaml
+## Task 1 & 2: person.yaml
