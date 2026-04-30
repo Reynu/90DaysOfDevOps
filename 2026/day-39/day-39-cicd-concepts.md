@@ -81,3 +81,21 @@ D --> E[STAGE 3: DEPLOY<br>
 - docker-compose up<br>
 - Health check<br>
 🚀 App live]
+
+
+## Task 5: Real-World Pipeline — FastAPI on GitHub
+
+**Repo:** https://github.com/fastapi/fastapi  
+**Workflow File:** `.github/workflows/test.yml`
+
+---
+
+### 🚀 What triggers it?
+
+The pipeline runs on three events:
+
+- **Push** → when code is pushed to the `master` branch  
+- **Pull Request** → when a PR is opened or updated (`synchronize`)  
+- **Schedule** → runs every Monday at midnight  
+  ```yaml
+  cron: '0 0 * * 1'
