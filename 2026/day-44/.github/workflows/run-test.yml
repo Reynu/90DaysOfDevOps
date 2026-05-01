@@ -1,0 +1,27 @@
+name: Run Tests
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run script
+        run: python app.py
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+            path: ~/.cache/pip
+            key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+            restore-keys: |
+                ${{ runner.os }}-pip-  
