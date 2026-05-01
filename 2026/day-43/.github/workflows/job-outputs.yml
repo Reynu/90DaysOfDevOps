@@ -20,4 +20,5 @@ jobs:
 
     steps:
       - name: Print date
-        run: echo "Date from previous job: ${{ needs.producer.outputs.today }}"
+        run: |
+          echo "Date from previous job: ${{ needs.producer.outputs.today }}"
