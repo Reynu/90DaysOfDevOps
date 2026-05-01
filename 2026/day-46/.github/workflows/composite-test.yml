@@ -1,0 +1,17 @@
+name: Composite Action Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run custom action
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: "Renu"
+          language: "en"
